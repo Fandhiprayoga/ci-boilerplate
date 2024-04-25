@@ -30,7 +30,7 @@
               <div class="card-header"><h4>Forgot Password</h4></div>
 
               <div class="card-body">
-                <p class="text-muted">We will send a link to reset your password</p>
+                <p class="text-muted">Forgot your password? No problem. Just let us know your email address and we will email you a login link that will allow you to acces application.</p>
                 <form method="POST">
                   <div class="form-group">
                     <label for="email">Email</label>
