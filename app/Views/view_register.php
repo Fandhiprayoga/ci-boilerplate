@@ -24,23 +24,41 @@
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
             <div class="login-brand">
-              <img src="assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+              <img src="<?= base_url();?>assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
 
+
+            <!-- alert section start  -->
+            <?php if (session('error') !== null): ?>
+              <div class="alert alert-danger" role="alert"><?= session('error') ?></div>
+            <?php elseif (session('errors') !== null): ?>
+              <div class="alert alert-danger" role="alert">
+                <?php if (is_array(session('errors'))): ?>
+                  <?php foreach (session('errors') as $error): ?>
+                    <?= $error ?>
+                    <br>
+                  <?php endforeach ?>
+                <?php else: ?>
+                  <?= session('errors') ?>
+                <?php endif ?>
+              </div>
+            <?php endif ?>
+            <!-- alert section end  -->
             <div class="card card-primary">
               <div class="card-header"><h4>Register</h4></div>
 
               <div class="card-body">
-                <form method="POST">
+                <form method="POST" action="<?= url_to('register') ?>">
+                <?= csrf_field() ?>
                   <div class="row">
-                    <div class="form-group col-6">
-                      <label for="frist_name">First Name</label>
-                      <input id="frist_name" type="text" class="form-control" name="frist_name" autofocus>
+                    <div class="form-group col-12">
+                      <label for="username">Username</label>
+                      <input id="username" type="text" class="form-control" name="username" autofocus>
                     </div>
-                    <div class="form-group col-6">
+                    <!-- <div class="form-group col-6">
                       <label for="last_name">Last Name</label>
                       <input id="last_name" type="text" class="form-control" name="last_name">
-                    </div>
+                    </div> -->
                   </div>
 
                   <div class="form-group">
@@ -61,7 +79,7 @@
                     </div>
                     <div class="form-group col-6">
                       <label for="password2" class="d-block">Password Confirmation</label>
-                      <input id="password2" type="password" class="form-control" name="password-confirm">
+                      <input id="password2" type="password" class="form-control" name="password_confirm">
                     </div>
                   </div>
 
