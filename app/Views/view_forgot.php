@@ -26,15 +26,33 @@
               <img src="<?= base_url()?>assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
 
+            <?php if (session('error') !== null) : ?>
+                    <div class="alert alert-danger" role="alert"><?= session('error') ?></div>
+                <?php elseif (session('errors') !== null) : ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php if (is_array(session('errors'))) : ?>
+                            <?php foreach (session('errors') as $error) : ?>
+                                <?= $error ?>
+                                <br>
+                            <?php endforeach ?>
+                        <?php else : ?>
+                            <?= session('errors') ?>
+                        <?php endif ?>
+                    </div>
+                <?php endif ?>
+
             <div class="card card-primary">
-              <div class="card-header"><h4>Forgot Password</h4></div>
+              <div class="card-header"><h4>Forgot Password 
+                <!-- <?= d(getenv('smtp.port'));?> -->
+              </h4></div>
 
               <div class="card-body">
                 <p class="text-muted">Forgot your password? No problem. Just let us know your email address and we will email you a login link that will allow you to acces application.</p>
-                <form method="POST">
+                <form action="<?= url_to('magic-link') ?>" method="POST">
+                <?= csrf_field() ?>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                    <input id="email" type="email" class="form-control" name="email" tabindex="1" value="<?= old('email', auth()->user()->email ?? null) ?>" required autofocus>
                   </div>
 
                   <div class="form-group">

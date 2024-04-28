@@ -6,10 +6,30 @@ use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
-    public string $fromEmail  = 'fandhi@ittelkom-pwt.ac.id';
-    public string $fromName   = 'fandhi prayoga';
+    public string $fromEmail  = 'fandhi@testing.id';
+    public string $fromName   = 'ci-boilerplate';
     public string $recipients = '';
 
+    public $SMTPHost;
+    public $SMTPPort;
+    public $SMTPUser;
+    public $SMTPPass;
+    public $SMTPCrypto;
+    public $protocol;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        // Mengambil nilai dari variabel lingkungan
+        $this->SMTPHost = getenv('smtp.host');
+        $this->SMTPPort = intval(getenv('smtp.port'));
+        $this->SMTPUser = getenv('smtp.user');
+        $this->SMTPPass = getenv('smtp.pass');
+        $this->SMTPCrypto = getenv('smtp.crypto');
+        $this->protocol = getenv('smtp.protocol');
+
+    }
     /**
      * The "user agent"
      */
@@ -18,7 +38,7 @@ class Email extends BaseConfig
     /**
      * The mail sending protocol: mail, sendmail, smtp
      */
-    public string $protocol = 'mail';
+    // public string $protocol = 'smtp';
 
     /**
      * The server path to Sendmail.
@@ -28,22 +48,22 @@ class Email extends BaseConfig
     /**
      * SMTP Server Hostname
      */
-    public string $SMTPHost = '';
+    // public string $SMTPHost = env('smtp.host');
 
     /**
      * SMTP Username
      */
-    public string $SMTPUser = '';
+    // public string $SMTPUser = env('smtp.user');
 
     /**
      * SMTP Password
      */
-    public string $SMTPPass = '';
+    // public string $SMTPPass = env('smtp.pass');
 
     /**
      * SMTP Port
      */
-    public int $SMTPPort = 25;
+    // public int $SMTPPort = env('smtp.port');
 
     /**
      * SMTP Timeout (in seconds)
@@ -62,7 +82,7 @@ class Email extends BaseConfig
      *             to the server. 'ssl' means implicit SSL. Connection on port
      *             465 should set this to ''.
      */
-    public string $SMTPCrypto = 'tls';
+    // public string $SMTPCrypto = env('smtp.crypto');
 
     /**
      * Enable word-wrap

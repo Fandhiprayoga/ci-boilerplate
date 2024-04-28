@@ -67,3 +67,14 @@
 #--------------------------------------------------------------------
 
 # logger.threshold = 4
+
+#--------------------------------------------------------------------
+# SMTP SETTINGS
+#--------------------------------------------------------------------
+
+# smtp.protocol ='smtp'
+# smtp.host = 'smtp.example.com'
+# smtp.port = 587
+# smtp.user = 'your-email@example.com'
+# smtp.pass = 'your-password'
+# smtp.crypto = 'tls'  # Opsi lain: 'ssl', jika diperlukan
