@@ -7,7 +7,10 @@ class Users extends BaseController
 {
     public function index()
     {
-        return view("dashboard/main");
+        return view("dashboard/components/header").
+                view("dashboard/components/sidebar_user").
+                view("dashboard/user/main_user").
+                view("dashboard/components/footer");
     }
 
 }
