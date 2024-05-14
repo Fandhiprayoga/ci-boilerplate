@@ -8,7 +8,11 @@ class Home extends BaseController
     {
 
         if (auth()->loggedIn()) {
-            return redirect()->to('dashboarduser');
+            if (auth()->user()->can('admin.access')) {
+                return redirect()->to('dashboardadmin');
+            } else {
+                return redirect()->to('dashboarduser');
+            }
         }
         return view('welcome_header').view('welcome_message').view('welcome_footer');
     }

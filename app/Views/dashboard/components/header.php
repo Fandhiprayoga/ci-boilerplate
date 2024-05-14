@@ -220,9 +220,10 @@
             <div class="d-sm-none d-lg-inline-block">Hi,  <?= auth()->user()->username;?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <?php
-                $hourminutes = round(abs(strtotime(auth()->user()->lastLogin()->date->format("Y-m-d H:i:s"))- strtotime(date("Y-m-d H:i:s"))) / 60,0) ;
+                (auth()->user()->lastLogin() != null) ?
+                $hourminutes = round(abs(strtotime(auth()->user()->lastLogin()->date->format("Y-m-d H:i:s"))- strtotime(date("Y-m-d H:i:s"))) / 60,0) : 0;
               ?>
-              <div class="dropdown-title">Logged in <?= $hourminutes;?> min ago</div>
+              <div class="dropdown-title">Logged in 0 min ago</div>
               <a href="<?= base_url()?>profile" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
